@@ -1,0 +1,36 @@
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+        - 
+          resources:
+            requests:
+              cpu: "0.2"
+              memory: 256Mi
+            limits:
+              cpu: "1.0"
+              memory: 256Mi
+          env:
+          - name: SPRING_APPLICATION_JSON
+            value: '{"server":{"undertow":{"io-threads":1, "worker-threads":2 }}}'
+          - name: MYSQL_SERVICE_NAME
+            value: mysql
+          - name: MYSQL_SERVICE_DATABASE
+#            value: sampledb
+            valueFrom:
+              secretKeyRef:
+                name: mysql
+                key: database-name
+          - name: MYSQL_SERVICE_USERNAME
+#            value: ${mysql-service-username}
+            valueFrom:
+              secretKeyRef:
+                name: mysql
+                key: database-user
+          - name: MYSQL_SERVICE_PASSWORD
+#            value: ${mysql-service-password}
+            valueFrom:
+              secretKeyRef:
+                name: mysql
+                key: database-password
