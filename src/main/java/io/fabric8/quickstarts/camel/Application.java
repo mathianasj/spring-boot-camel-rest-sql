@@ -67,7 +67,7 @@ public class Application extends SpringBootServletInitializer {
 
         @Override
         public void configure() {
-            from("quartz2://quartztimer?cron=0/10+*+*+*+*+?&stateful=true").routeId("quartztimer")
+            from("quartz2-component://quartztimer?cron=0/10+*+*+*+*+?&stateful=true").routeId("quartztimer")
                     .setHeader("ROUTING_KEY", simple("'trigger1'")).log("Quartz2");
 
             // A first route generates some orders and queue them in DB

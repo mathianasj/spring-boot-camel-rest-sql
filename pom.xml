@@ -72,6 +72,10 @@
             </exclusions>
         </dependency>
         <dependency>
+	        <groupId>org.apache.camel</groupId>
+	        <artifactId>camel-quartz2-starter</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-undertow</artifactId>
         </dependency>
