@@ -14,21 +14,21 @@ spec:
           env:
           - name: SPRING_APPLICATION_JSON
             value: '{"server":{"undertow":{"io-threads":1, "worker-threads":2 }}}'
-          - name: MYSQL_SERVICE_NAME
+          - name: MYSQL_QUARTZ_SERVICE_NAME
             value: mysql
-          - name: MYSQL_SERVICE_DATABASE
+          - name: MYSQL_QUARTZ_SERVICE_DATABASE
 #            value: sampledb
             valueFrom:
               secretKeyRef:
                 name: mysql
                 key: database-name
-          - name: MYSQL_SERVICE_USERNAME
+          - name: MYSQL_QUARTZ_SERVICE_USERNAME
 #            value: ${mysql-service-username}
             valueFrom:
               secretKeyRef:
                 name: mysql
                 key: database-user
-          - name: MYSQL_SERVICE_PASSWORD
+          - name: MYSQL_QUARTZ_SERVICE_PASSWORD
 #            value: ${mysql-service-password}
             valueFrom:
               secretKeyRef:

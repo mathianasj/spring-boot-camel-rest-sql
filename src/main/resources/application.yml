@@ -1,3 +1,16 @@
+# get mysql connection information from environment variables
+mysql:
+  quartz:
+    service:
+      # The name of the service hosting the MySQL database server,
+      # can be customized using the 'MYSQL_SERVICE_NAME' env variable to use a different service
+      # name:     mysql
+      name: ${MYSQL_QUARTZ_SERVICE_NAME}
+      # The database to use, can be customized using the 'MYSQL_SERVICE_DATABASE' env variable
+      database: ${MYSQL_QUARTZ_SERVICE_DATABASE}
+      username: ${MYSQL_QUARTZ_SERVICE_USERNAME}
+      password: ${MYSQL_QUARTZ_SERVICE_PASSWORD}
+
 camel:
   springboot:
     # The Camel context name
@@ -24,9 +37,9 @@ camel:
         org.quartz.jobStore.clusterCheckinInterval: "20000"
 
         org.quartz.dataSource.myDS.driver: com.mysql.jdbc.Driver
-        org.quartz.dataSource.myDS.URL: jdbc:mysql://localhost:3306/sampledb?useSSL=false
-        org.quartz.dataSource.myDS.user: root
-        org.quartz.dataSource.myDS.password: my-secret-pw
+        org.quartz.dataSource.myDS.URL: jdbc:mysql://${mysql.quartz.service.name}:3306/${mysql.quartz.service.database}
+        org.quartz.dataSource.myDS.user: ${mysql.quartz.service.username}
+        org.quartz.dataSource.myDS.password: ${mysql.quartz.service.password}
         org.quartz.dataSource.myDS.maxConnections: "12"
 
 # Binding health checks to a different port
